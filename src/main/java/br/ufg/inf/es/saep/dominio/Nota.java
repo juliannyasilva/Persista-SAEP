@@ -3,7 +3,7 @@
  * Creative Commons Attribution 4.0 International License.
  */
 
-package br.ufg.inf.es.saep.sandbox.dominio;
+package br.ufg.inf.es.saep.dominio;
 
 /**
  * Encapsula uma observação sobre um item avaliável,

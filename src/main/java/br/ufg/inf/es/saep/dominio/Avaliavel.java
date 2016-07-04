@@ -3,7 +3,7 @@
  * Creative Commons Attribution 4.0 International License.
  */
 
-package br.ufg.inf.es.saep.sandbox.dominio;
+package br.ufg.inf.es.saep.dominio;
 
 /**
  * Serviço oferecido por objeto que pode

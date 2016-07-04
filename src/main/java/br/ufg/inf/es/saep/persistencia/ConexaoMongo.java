@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufg.inf.saep.persistencia;
+package br.ufg.inf.es.saep.persistencia;
 
 import com.mongodb.DB;
 import com.mongodb.Mongo;

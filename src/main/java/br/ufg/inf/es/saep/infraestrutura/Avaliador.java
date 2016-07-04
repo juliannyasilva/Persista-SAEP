@@ -1,6 +1,10 @@
-package br.ufg.inf.es.saep.sandbox.infraestrutura;
+package br.ufg.inf.es.saep.infraestrutura;
 
-import br.ufg.inf.es.saep.sandbox.dominio.*;
+import br.ufg.inf.es.saep.dominio.Avaliavel;
+import br.ufg.inf.es.saep.dominio.Valor;
+import br.ufg.inf.es.saep.dominio.Regra;
+import br.ufg.inf.es.saep.dominio.AvaliacaoRegraException;
+import br.ufg.inf.es.saep.dominio.AvaliaRegraService;
 import com.udojava.evalex.Expression;
 
 import java.math.BigDecimal;
