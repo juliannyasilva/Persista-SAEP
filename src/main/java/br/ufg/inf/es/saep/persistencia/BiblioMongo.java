@@ -13,9 +13,9 @@ import java.util.Map;
  *
  * @author JuliannyAS
  */
-public interface Dao {
+public interface BiblioMongo {
 
-    void save(Map<String, Object> mapEntity);
+    void insert(Map<String, Object> mapEntity);
 
     void update(Map<String, Object> mapQuery, Map<String, Object> mapEntity);
 
@@ -24,5 +24,7 @@ public interface Dao {
     DBObject findOne(Map<String, Object> mapEntity);
 
     List<DBObject> findAll();
+
+    List<DBObject> findKeyValue();
 
 }
