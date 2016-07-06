@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufg.inf.es.saep.persistencia;
+package persistencia.resolucao;
 
 /**
  *
  * @author JuliannyAS
  */
-public class DaoParecer {
+public class DaoTipo {
     
 }

@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufg.inf.es.saep.persistencia;
+package persistencia.parecer;
 
 /**
  *
  * @author JuliannyAS
  */
-public class DaoResolucao {
+public class DaoNota {
+    public void adiciona(){}
     
 }
