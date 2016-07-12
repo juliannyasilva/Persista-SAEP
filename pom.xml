@@ -71,13 +71,6 @@
             <artifactId>gson</artifactId>
             <version>2.7</version>
         </dependency>
-        
-        <!-- https://mvnrepository.com/artifact/com.github.kyriosdata/saep-dominio -->
-        <dependency>
-            <groupId>com.github.kyriosdata</groupId>
-            <artifactId>saep-dominio</artifactId>
-            <version>1.0.0</version>
-        </dependency>
 
     </dependencies>
 </project>
