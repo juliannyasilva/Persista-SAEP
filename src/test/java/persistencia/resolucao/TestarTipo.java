@@ -1,13 +1,13 @@
 package persistencia.resolucao;
 
-import dominio.Atributo;
-import dominio.Tipo;
+import br.ufg.inf.es.saep.dominio.Atributo;
+import br.ufg.inf.es.saep.dominio.Tipo;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import java.util.List;
 import java.util.Set;
 import persistencia.dao.DaoTipo;
-import persistencia.dao.MongoConnection;
+import br.ufg.inf.es.saep.persistencia.MongoConnection;
 
 /**
  *
