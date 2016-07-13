@@ -1,14 +1,10 @@
 package br.ufg.inf.es.saep.persistencia;
 
 import com.google.gson.Gson;
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
 import br.ufg.inf.es.saep.dominio.Resolucao;
 import br.ufg.inf.es.saep.dominio.Tipo;
 import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -17,18 +13,19 @@ import java.util.Map;
 public class DaoResolucao{
     
     Mongo mongo = new Mongo();
-    Gson gson = new Gson();
-
-    
+    Gson gson = new Gson();   
     
     public Resolucao mostrarPorId(String idResolucao) {
-        
-        return resolucao;
+        Resolucao resolucao;
+        String json = mongo.findDocument("id",idResolucao, "resolucao").toJson();
+        return resolucao = gson.fromJson(json, Resolucao.class);
     }
 
-    public boolean salvarResolucao(Resolucao resolucao) {
-
-        if (mapResolucao != null) {
+    public boolean salvarResolucao(Resolucao resolucao) {        
+        Boolean inseriu = false;
+        mongo.insert(gson.toJson(resolucao), "resolucao");
+        
+        if (fi) {
             return true;
         } else {
             return false;
@@ -43,12 +40,12 @@ public class DaoResolucao{
 
     }
 
-    public void salvarTipo(Tipo tipo) {
-
+    public void salvarTipo(Tipo tipo) {        
+        mongo.insert(gson.toJson(tipo), "resolucao");
     }
 
-    public void removerTipo(String codigo) {
-        
+    public void removerTipo(String idTipo) {
+        mongo.delete("id", idTipo, "resolucao");
     }
 
     public Tipo mostrarTipoPorId(String id) {

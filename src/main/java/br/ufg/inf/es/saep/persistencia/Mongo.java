@@ -16,18 +16,24 @@ public class Mongo {
     MongoClient mongoClient = new MongoClient();
     MongoDatabase db = mongoClient.getDatabase(databaseName);
 
-    public void insert(String document, Class<Resolucao> aClass) {
-        db.getCollection(aClass.getSimpleName()).insertOne(Document.parse(document));
+    public void insert(String document, String dbCollection) {
+        db.getCollection(dbCollection).insertOne(Document.parse(document));
     }
     
-     public void delete(String idDocument, Class<Resolucao> aClass) {
-        db.getCollection(aClass.getSimpleName()).deleteOne(new Document("id", idDocument));
+     public void delete(String key, String value, String dbCollection) {
+        db.getCollection(dbCollection).deleteOne(new Document(key, value));
     }
      
-     public void find(String idDocument, Class<Resolucao> aClass){
-          db.getCollection(aClass.getSimpleName()).
+     public void find(String key, String  value, String dbCollection){
+          db.getCollection(dbCollection).find(new Document(key, value));
      }
-    
-
- 
+     
+     public void deleteField(String key, String value, String dbCollection) {
+        db.getCollection(dbCollection).findOneAndDelete(new Document(key, value));
+    }
+     
+    Document findDocument(String key, String value, String dbCollection) {
+       Document document = db.getCollection(dbCollection).find(new Document(key, value)).first();
+       return document;
+    }
 }

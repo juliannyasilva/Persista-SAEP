@@ -15,11 +15,10 @@ import com.mongodb.client.MongoDatabase;
  */
 public class DaoParecer {
 
-    Mongo mongo = new Mongo();
-    Gson gson = new Gson();
-    String databaseName = "test";
-    MongoClient mongoClient = new MongoClient();
-    MongoDatabase db = mongoClient.getDatabase(databaseName);
+    private Mongo mongo = new Mongo();
+    private Gson gson = new Gson();
+    private String collectionParecer = "parecer";
+    private String collectionRadoc = "radoc";
     
 
     public Parecer mostrarPorId(String idParecer) {
@@ -27,7 +26,7 @@ public class DaoParecer {
     }
 
     public void removerNota(String idParecer, Parecer parecer, Avaliavel original) {
-
+        mongo.d
     }
 
     public void adicionarNota(String idParecer, Parecer parecer, Nota nota) {
@@ -39,7 +38,7 @@ public class DaoParecer {
     }
 
     public void salvarParecer(Parecer parecer) {
-
+        mongo.insert(gson.toJson(parecer), collectionParecer);
     }
 
     public void atualizarFundamentacao(String idParecer, Parecer parecer, String fundamentacao) {
@@ -47,7 +46,7 @@ public class DaoParecer {
     }
 
     public void removerParecer(String id) {
-
+        mongo.delete("id", id, "parecer");
     }
 
     public Radoc mostrarRadocPorId(String idRadoc) {
