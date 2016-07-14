@@ -18,7 +18,7 @@ public class ImplsResolucaoRepository implements ResolucaoRepository {
     public Resolucao byId(String idResolucao) {
         DaoResolucao daoResolucao = new DaoResolucao();
         Resolucao resolucao;
-        resolucao = daoResolucao.mostrarPorId(idResolucao);
+        resolucao = daoResolucao.mostrarResolucaoPorId(idResolucao);
         return resolucao;
     }
 

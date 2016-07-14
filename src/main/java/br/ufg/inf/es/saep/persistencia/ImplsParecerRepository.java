@@ -8,7 +8,6 @@ import br.ufg.inf.es.saep.dominio.Nota;
 import br.ufg.inf.es.saep.dominio.Parecer;
 import br.ufg.inf.es.saep.dominio.ParecerRepository;
 import br.ufg.inf.es.saep.dominio.Radoc;
-import br.ufg.inf.es.saep.persistencia.DaoParecer;
 
 /**
  *
@@ -19,7 +18,7 @@ public class ImplsParecerRepository implements ParecerRepository {
     @Override
     public void adicionaNota(String idParecer, Nota nota) {
         DaoParecer daoParecer = new DaoParecer();
-        Parecer parecer = daoParecer.mostrarPorId(idParecer);
+        Parecer parecer = daoParecer.mostrarParecerPorId(idParecer);
         if (parecer != null) {
             daoParecer.adicionarNota(idParecer, parecer, nota);
         } else {
@@ -30,7 +29,7 @@ public class ImplsParecerRepository implements ParecerRepository {
     @Override
     public void removeNota(String idParecer, Avaliavel original) {
         DaoParecer daoParecer = new DaoParecer();
-        Parecer parecer = daoParecer.mostrarPorId(idParecer);
+        Parecer parecer = daoParecer.mostrarNotaPorId(idParecer);
         if (parecer != null) {
             daoParecer.removerNota(idParecer, parecer, original);
         } else {
@@ -53,7 +52,7 @@ public class ImplsParecerRepository implements ParecerRepository {
     @Override
     public void atualizaFundamentacao(String idParecer, String fundamentacao) {
         DaoParecer daoParecer = new DaoParecer();
-        Parecer parecer = daoParecer.mostrarPorId(idParecer);
+        Parecer parecer = daoParecer.mostrarParecerPorId(idParecer);
         if (parecer != null) {
             daoParecer.atualizarFundamentacao(idParecer, parecer, fundamentacao);
         } else {
@@ -64,7 +63,7 @@ public class ImplsParecerRepository implements ParecerRepository {
     @Override
     public Parecer byId(String id) {
         DaoParecer daoParecer = new DaoParecer();
-        Parecer parecer = daoParecer.mostrarPorId(id);
+        Parecer parecer = daoParecer.mostrarParecerPorId(id);
         if (parecer != null) {
             return parecer;
         } else {

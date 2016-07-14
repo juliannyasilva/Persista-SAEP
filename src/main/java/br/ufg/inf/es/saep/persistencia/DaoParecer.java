@@ -6,8 +6,6 @@ import br.ufg.inf.es.saep.dominio.Nota;
 import br.ufg.inf.es.saep.dominio.Parecer;
 import br.ufg.inf.es.saep.dominio.Radoc;
 import com.google.gson.Gson;
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
 
 /**
  *
@@ -15,18 +13,28 @@ import com.mongodb.client.MongoDatabase;
  */
 public class DaoParecer {
 
-    private Mongo mongo = new Mongo();
-    private Gson gson = new Gson();
-    private String collectionParecer = "parecer";
-    private String collectionRadoc = "radoc";
-    
+    private final Mongo mongo;
+    private final Gson gson;
+    private final String parecerCollection = "parecer";
+    private final String radocCollection = "radoc";
 
-    public Parecer mostrarPorId(String idParecer) {
+    /**
+     * Construtor que instancia as variaveis mongo e gson. Sendo a variavel
+     * mongo responsavel por chamar os metodos nativos do mongodb. E a variavel
+     * gson responsavel pela serialização dos objetos e documentos.
+     */
+    public DaoParecer() {
+        this.mongo = new Mongo();
+        this.gson = new Gson();
+    }
 
+    public Parecer mostrarParecerPorId(String idParecer) {
+        Parecer parecer = gson.fromJson(mongo.findOne("id", idParecer, parecerCollection), Parecer.class);
+        return parecer;
     }
 
     public void removerNota(String idParecer, Parecer parecer, Avaliavel original) {
-        mongo.d
+
     }
 
     public void adicionarNota(String idParecer, Parecer parecer, Nota nota) {
@@ -38,7 +46,7 @@ public class DaoParecer {
     }
 
     public void salvarParecer(Parecer parecer) {
-        mongo.insert(gson.toJson(parecer), collectionParecer);
+        mongo.insert(gson.toJson(parecer), parecerCollection);
     }
 
     public void atualizarFundamentacao(String idParecer, Parecer parecer, String fundamentacao) {
@@ -50,23 +58,27 @@ public class DaoParecer {
     }
 
     public Radoc mostrarRadocPorId(String idRadoc) {
-
+        Radoc radoc = gson.fromJson(mongo.findOne("id", idRadoc, radocCollection), Radoc.class);
+        return radoc;
     }
 
     public String salvarRadoc(Radoc radoc) {
-
+        mongo.insert(gson.toJson(radoc), radocCollection);
+        String json = mongo.findOne("id", radoc.getId(), radocCollection);
+        return json;
     }
 
     public Boolean removerRadoc(String idRadoc) {
-
+        mongo.delete("id", idRadoc, radocCollection);
+        String json = mongo.findOne("id", idRadoc, radocCollection);
+        if (json != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public DBCollection getDbCollectionParecer() {
-
+    Parecer mostrarNotaPorId(String idParecer) {
+        
     }
-
-    public DBCollection getDbCollectionRadoc() {
-
-    }
-
 }
