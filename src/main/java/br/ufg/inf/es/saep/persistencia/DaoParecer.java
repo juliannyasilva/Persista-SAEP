@@ -1,11 +1,11 @@
 package br.ufg.inf.es.saep.persistencia;
 
-import com.mongodb.DBCollection;
 import br.ufg.inf.es.saep.dominio.Avaliavel;
 import br.ufg.inf.es.saep.dominio.Nota;
 import br.ufg.inf.es.saep.dominio.Parecer;
 import br.ufg.inf.es.saep.dominio.Radoc;
 import com.google.gson.Gson;
+import java.util.List;
 
 /**
  *
@@ -28,23 +28,37 @@ public class DaoParecer {
         this.gson = new Gson();
     }
 
+    /**
+     * Busca um Parecer correspondente ao codigo identificador fornecido.
+     *
+     * @param idParecer codigo identificador do parecer a ser buscado.
+     * @return um objeto do tipo Parecer.
+     */
     public Parecer mostrarParecerPorId(String idParecer) {
         Parecer parecer = gson.fromJson(mongo.findOne("id", idParecer, parecerCollection), Parecer.class);
         return parecer;
+    }
+
+    public void adicionarNota(String idParecer, Parecer parecer, Nota nota) {
+        List<Nota> notas = parecer.getNotas();
+
     }
 
     public void removerNota(String idParecer, Parecer parecer, Avaliavel original) {
 
     }
 
-    public void adicionarNota(String idParecer, Parecer parecer, Nota nota) {
-
+    public Parecer mostrarParecer(Parecer parecer) {
+        String json = mongo.findOne("id", parecer.getId(), parecerCollection);
+        Parecer parecerFinal = gson.fromJson(json, Parecer.class);
+        return parecerFinal;
     }
 
-    public Parecer mostrarPorParecer(Parecer parecer) {
-
-    }
-
+    /**
+     * Salva uma objeto do tipo Parecer dentro da coleção parecer.
+     *
+     * @param parecer objeto Resolucao a ser salvo.
+     */
     public void salvarParecer(Parecer parecer) {
         mongo.insert(gson.toJson(parecer), parecerCollection);
     }
@@ -53,15 +67,34 @@ public class DaoParecer {
 
     }
 
-    public void removerParecer(String id) {
-        mongo.delete("id", id, "parecer");
+    /**
+     * Remove um Parecer pertecente a coleção parecer.
+     *
+     * @param idParecer identificador unico do parecer a ser removido.
+     */
+    public void removerParecer(String idParecer) {
+        mongo.delete("id", idParecer, "parecer");
     }
 
+    /**
+     * Busca uma Resolução correspondente ao codigo identificador fornecido.
+     *
+     * @param idRadoc codigo identificador do parecer a ser buscad.
+     * @return
+     */
     public Radoc mostrarRadocPorId(String idRadoc) {
         Radoc radoc = gson.fromJson(mongo.findOne("id", idRadoc, radocCollection), Radoc.class);
         return radoc;
     }
 
+    /**
+     * Salva uma objeto do tipo Radoc dentro da coleção radoc, e mostra que foi
+     * salvo, retornando seu identificador.
+     *
+     * @param radoc objeto Resolucao a ser salvo.
+     * @return json falso caso a resoluçaõ não tenha sido salva, ou verdadeiro
+     * caso a resolução tenha salva com sucesso.
+     */
     public String salvarRadoc(Radoc radoc) {
         mongo.insert(gson.toJson(radoc), radocCollection);
         String json = mongo.findOne("id", radoc.getId(), radocCollection);
@@ -72,13 +105,9 @@ public class DaoParecer {
         mongo.delete("id", idRadoc, radocCollection);
         String json = mongo.findOne("id", idRadoc, radocCollection);
         if (json != null) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
-    }
-
-    Parecer mostrarNotaPorId(String idParecer) {
-        
     }
 }
